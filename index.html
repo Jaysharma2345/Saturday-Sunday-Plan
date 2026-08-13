@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Want a Plan for Saturady-Sunday? 💕</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-align: center;
+            color: #8b004f;
+        }
+
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            font-size: 30px;
+            animation: float 6s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 38px;
+            color: white;
+            text-shadow: 2px 2px #d63384;
+        }
+
+        .heart-big {
+            font-size: 80px;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat {
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Cute rabbit */
+        .rabbit {
+            font-size: 110px;
+            margin: 10px;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .rabbit-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        button {
+            border: none;
+            border-radius: 30px;
+            padding: 15px 35px;
+            margin: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #yesBtn {
+            background: #ff1493;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        #noBtn {
+            background: white;
+            color: #ff1493;
+        }
+
+        #noBtn:hover {
+            transform: translateX(10px);
+        }
+
+        /* Second page */
+        #lovePage {
+            display: none;
+        }
+
+        .question-box {
+            background: rgba(255,255,255,0.9);
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .question-box h2 {
+            color: #d63384;
+        }
+
+        .option {
+            display: block;
+            background: #ffe4ec;
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #ffc1d6;
+        }
+
+        .option input {
+            margin-right: 10px;
+            transform: scale(1.3);
+        }
+
+        #submitBtn {
+            background: #d63384;
+            color: white;
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        #result h3 {
+            color: #d63384;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- First Screen -->
+    <div id="homePage" class="container">
+
+        <div class="heart-big">❤️</div>
+
+        <h1>Want a Plan for Saturday-Sunday ? 💕</h1>
+
+        <div class="rabbit">🐰</div>
+
+        <div class="rabbit-text" id="pleaseText">
+            Please press YES 🥺👉👈
+        </div>
+
+        <div class="buttons">
+            <button id="yesBtn" onclick="sayYes()">Yes ❤️</button>
+            <button id="noBtn" onclick="noPressed()">No 😢</button>
+        </div>
+
+    </div>
+<!-- Second Screen -->
+<div id="lovePage" class="container">
+
+    <div class="heart-big">💖</div>
+
+    <div class="rabbit">🐰</div>
+
+    <div class="question-box">
+
+        <h2 id="dayQuestion">
+            What is your plan for Saturday? 💕
+        </h2>
+
+        <p>
+            Choose any <b>2 or 3 options</b> 😍
+        </p>
+
+        <!-- Saturday Options -->
+        <div id="saturdayOptions">
+
+            <label class="option">
+                <input type="checkbox" value="Sleep peacefully together">
+                💤 Sleep peacefully together
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="Kiss him Tightly for Whole Night">
+                💋 Kiss him Tightly for whole night
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="Spend a romantic Night together">
+                🌹 Spend a romantic Night together
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="Have a cute little argument">
+                😤 Have a cute little argument
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="Watch a movie together">
+                🎬 Watch a movie together
+            </label>
+
+        </div>
+
+
+        <!-- Sunday Options -->
+        <div id="sundayOptions" style="display: none;">
+
+            <label class="option">
+                <input type="checkbox" value="Want to go outside with him for fun">
+                🌳 Want to go outside with him for fun
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="Want to go cafe with him">
+                ☕ Want to go Cafe with him
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="Want to spend whole day at home">
+                🏠 Want to spend whole day at home
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="Locked with him in a room for Sunday">
+                🔐 Locked with him in a room for Sunday
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="Watch movie at home">
+                🎬 Watch Movie at Home
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="Cook some delicious food for him">
+                🍳 Cook some delicious food for Him
+            </label>
+
+        </div>
+
+        <br>
+
+        <button id="submitBtn" onclick="submitChoice()">
+            Submit 💕
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- Final Screen -->
+<div id="finalPage" class="container" style="display: none;">
+
+    <div class="heart-big">❤️</div>
+
+    <div style="font-size: 100px;">
+        😘
+    </div>
+
+    <h1>
+         😘💋
+    </h1>
+
+    <div class="rabbit">
+        🐰
+    </div>
+
+    <h1 style="color: white;">
+        Thankyou for your Sweet Response 😊💋
+    </h1>
+
+</div>
+    <script>
+
+
+   // ==============================
+// NO BUTTON MESSAGE SYSTEM
+// ==============================
+
+let noCount = 0;
+let yesSize = 20;
+
+const messages = [
+    "Please press YES 🥺👉👈",
+    "I will give you chocolate 🍫",
+    "I will give you teddy 🧸",
+    "Please bubu 🥺",
+    "Please 🥺🥺"
+];
+
+function noPressed() {
+
+    noCount++;
+
+    if (noCount <= messages.length) {
+
+        document.getElementById("pleaseText").innerText =
+            messages[noCount - 1];
+
+    }
+
+    if (noCount > messages.length) {
+
+        yesSize += 10;
+
+        document.getElementById("yesBtn").style.fontSize =
+            yesSize + "px";
+
+        document.getElementById("yesBtn").style.padding =
+            "15px 35px";
+    }
+}
+
+
+// ==============================
+// YES BUTTON
+// ==============================
+
+function sayYes() {
+
+    document.getElementById("homePage").style.display = "none";
+
+    document.getElementById("lovePage").style.display = "block";
+
+    createHearts();
+}
+
+
+// ==============================
+// SATURDAY / SUNDAY
+// ==============================
+
+let currentDay = "Saturday";
+
+let saturdayPlans = [];
+let sundayPlans = [];
+
+const FORMSPREE_URL = "https://formspree.io/f/maewjrjp";
+// ==============================
+// SUBMIT BUTTON
+// ==============================
+
+async function submitChoice() {
+
+    const selected = document.querySelectorAll(
+        'input[type="checkbox"]:checked'
+    );
+
+    // Must select 2 or 3 options
+    if (selected.length < 2 || selected.length > 3) {
+
+        alert("Please select 2 or 3 options ❤️");
+
+        return;
+    }
+
+    let choices = [];
+
+    selected.forEach(function(item) {
+        choices.push(item.value);
+    });
+
+
+    // ==============================
+    // SATURDAY SUBMISSION
+    // ==============================
+
+    if (currentDay === "Saturday") {
+
+        saturdayPlans = choices;
+
+        localStorage.setItem(
+            "saturdayPlans",
+            JSON.stringify(saturdayPlans)
+        );
+
+        // Change to Sunday
+        currentDay = "Sunday";
+
+        document.getElementById("dayQuestion").innerText =
+            "What is your plan for Sunday? 💕";
+
+        // Hide Saturday
+        document.getElementById("saturdayOptions").style.display =
+            "none";
+
+        // Show Sunday
+        document.getElementById("sundayOptions").style.display =
+            "block";
+
+        // Uncheck all boxes
+        document.querySelectorAll(
+            'input[type="checkbox"]'
+        ).forEach(function(box) {
+            box.checked = false;
+        });
+
+        return;
+    }
+
+
+    // ==============================
+    // SUNDAY SUBMISSION
+    // ==============================
+
+    if (currentDay === "Sunday") {
+
+        sundayPlans = choices;
+
+        // Save locally
+        localStorage.setItem(
+            "sundayPlans",
+            JSON.stringify(sundayPlans)
+        );
+
+
+        // ==============================
+        // SEND TO FORMSPREE
+        // ==============================
+
+        const submitBtn =
+            document.getElementById("submitBtn");
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Sending... 💕";
+
+
+        try {
+
+            const response = await fetch(
+                FORMSPREE_URL,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        Saturday_Plans:
+                            saturdayPlans.join(", "),
+
+                        Sunday_Plans:
+                            sundayPlans.join(", ")
+
+                    })
+                }
+            );
+
+
+            if (!response.ok) {
+
+                const data = await response.json()
+                    .catch(() => ({}));
+
+                throw new Error(
+                    data.error ||
+                    "Formspree submission failed"
+                );
+            }
+
+
+            console.log(
+                "Response successfully sent to Formspree ❤️"
+            );
+
+
+            // ==============================
+            // SHOW FINAL PAGE
+            // ==============================
+
+            document.getElementById("lovePage").style.display =
+                "none";
+
+            document.getElementById("finalPage").style.display =
+                "block";
+
+            createHearts();
+
+
+        } catch (error) {
+
+            console.error(
+                "Formspree error:",
+                error
+            );
+
+            alert(
+                "Something went wrong while sending your response. Please try again ❤️"
+            );
+
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit 💕";
+        }
+    }
+}
+// ==============================
+// FLOATING HEARTS
+// ==============================
+
+function createHearts() {
+
+    setInterval(function() {
+
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.innerHTML =
+            ["❤️", "💕", "💖", "💗", "💘"]
+            [Math.floor(Math.random() * 5)];
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.fontSize =
+            (20 + Math.random() * 30) + "px";
+
+        heart.style.animationDuration =
+            (4 + Math.random() * 4) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(function() {
+            heart.remove();
+        }, 8000);
+
+    }, 500);
+}
+
+</script>
+
+</body>
+</html>
